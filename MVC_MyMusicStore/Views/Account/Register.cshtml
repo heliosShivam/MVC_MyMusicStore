@@ -1,0 +1,56 @@
+﻿@using MVC_MyMusicStore.Models.UserModels
+@model Register;
+
+@{
+    ViewBag.Title = "Register";
+}
+
+<div class="row flex justify-content-center">
+    <div class="col-md-4">
+        <div class="card">
+            <h4 class="card-header">Register</h4>
+
+            <div class="card-body">
+                <form asp-action="Register" method="post" class="form">
+                    <div asp-validation-summary="ModelOnly"></div>
+                    <div class="mb-1">
+                        <label asp-for="Name"></label>
+                        <input asp-for="Name" class="form-control" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    <div class="mb-1">
+                        <label asp-for="Email"></label>
+                        <input asp-for="Email" class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-1">
+                        <label asp-for="Password"></label>
+                        <input asp-for="Password" class="form-control" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                    
+                    <div class="mb-1">
+                        <label asp-for="ConfirmPassword"></label>
+                        <input asp-for="ConfirmPassword" class="form-control" />
+                        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                    </div>
+                    
+                    <div class="d-grid gap-2 col-6 mx-auto">
+                        <div class="row">
+                            <input type="submit" value="Register" class="btn btn-primary" />
+                        </div>
+
+                        
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

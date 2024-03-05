@@ -1,0 +1,25 @@
+﻿@model List<MVC_MyMusicStore.Models.Album>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+</div>
+<div class="continer">
+    <h3>Albums Available</h3>
+    <div class="row">
+        @foreach(var i in Model)
+        {
+            <div class="card m-3 p-0" style="width: 18rem;">
+                <div style="height : 16vh ; background-color: bisque " class="m-0"></div>
+                <div class="card-body">
+                    <h5 class="card-title">@i.Title</h5>
+                    <p class="card-text">@i.Price</p>
+                    <a href="#" class="btn btn-primary">Add to cart</a>
+                </div>
+            </div>
+        }
+    
+</div>
