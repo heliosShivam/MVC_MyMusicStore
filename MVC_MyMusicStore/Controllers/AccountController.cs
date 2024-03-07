@@ -64,6 +64,7 @@ namespace MVC_MyMusicStore.Controllers
 
                 if (result.Succeeded)
                 {
+                    await _um.AddToRoleAsync(user ,Roles.User.ToString());
                     await _sm.SignInAsync(user , false);
 
                     return RedirectToAction("Index", "Home");

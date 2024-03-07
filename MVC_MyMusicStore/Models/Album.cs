@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using MVC_MyMusicStore.Models.CartModels;
+using System.ComponentModel.DataAnnotations;
 
 namespace MVC_MyMusicStore.Models
 {
@@ -15,5 +16,9 @@ namespace MVC_MyMusicStore.Models
 
         public Genre? Genre { get; set; }
         public Artist? Artist { get; set; }
+
+        public List<OrderDetail> OrderDetails { get; set; }
+
+        public List<CartDetail> CartDetail {  get; set; }
     }
 }
