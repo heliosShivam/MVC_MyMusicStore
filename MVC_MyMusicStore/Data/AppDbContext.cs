@@ -19,6 +19,7 @@ namespace MVC_MyMusicStore.Data
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderDetail> OrderDetail { get; set; }
         
+      
 
 
     }

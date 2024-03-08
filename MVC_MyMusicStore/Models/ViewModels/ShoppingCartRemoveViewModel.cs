@@ -2,7 +2,7 @@
 {
     public class ShoppingCartRemoveViewModel
     {
-        public int CartTotalPrice { get; set; }
+        public decimal CartTotalPrice { get; set; }
         public int ItemCount { get; set; }
         public int CartCount { get; set; }
         public int DeleteId { get; set; }

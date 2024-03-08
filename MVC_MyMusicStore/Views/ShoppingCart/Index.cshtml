@@ -36,19 +36,20 @@
 <h3>
     <em>Review</em> your cart:
 </h3>
+<a class="btn btn-secondary" asp-action="EmptyCart" asp-controller="Shopping">Empty</a>
 <p class="button">
     <a asp-action="AddressAndPayment" asp-controller="Checkout">Checkout >></a>
 </p>
 <div id="update-message"></div>
-<table>
+<table class="table">
     <thead>
         <tr>
             <th>
-                Album Name
+                Album Id
             </th>
-            <th>
+            @* <th>
                 Price (each)
-            </th>
+            </th> *@
             <th>
                 Quantity
             </th>
@@ -56,32 +57,45 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model.CartItems)
+
+       
+        @if (Model.CartItems != null)
         {
-            <tr id="row-@item.RecordId">
-                <td>
-                    <a asp-action="Details" asp-controller="Store" asp-route-id="@item.AlbumId">@item.Album.Title</a>
-                </td>
-                <td>
-                    @item.Album.Price
-                </td>
-                <td id="item-count-@item.RecordId">
-                    @item.Count
-                </td>
-                <td>
-                    <a href="#" class="RemoveLink" data-id="@item.RecordId">Remove from cart</a>
-                </td>
+            // Iterate over cart items and display them
+            @foreach (var item in Model.CartItems)
+            {
+             <tr>
+                    <td>@item.AlbumId</td>
+                    <td>@item.Count</td>
+                    <td><a data-id="@item.RecordId" class="RemoveLink btn btn-danger">-</a></td>
+             </tr>
+             
+
+            <td>
+                @* <a asp-action="Details" asp-controller="Store" asp-route-id="@item.AlbumId">@item.AlbumId</a> *@
+            </td>
+            
+
+                @* <tr id="row-@item.RecordId">
+                    
+                    
+                    <td>
+                        <a href="#" class="RemoveLink" data-id="@item.RecordId">Remove from cart</a>
+                    </td>
+                </tr> *@
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="4">Cart is empty</td>
             </tr>
         }
+
         <tr>
             <td>
-                Total
-            </td>
-            <td></td>
-            <td></td>
-            <td id="cart-total">
-                @Model.CartTotal
-            </td>
+            Total : @Model.CartTotal
+            </td>        
         </tr>
     </tbody>
 </table>

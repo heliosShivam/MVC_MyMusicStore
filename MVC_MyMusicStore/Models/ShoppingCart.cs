@@ -29,7 +29,7 @@ namespace MVC_MyMusicStore.Models
             var Storedb = services.GetRequiredService<AppDbContext>();
             var cart = new ShoppingCart(Storedb, contextAccessor);
             cart.ShoppingCartId = cart.GetCartId();
-            return cart; ;
+            return cart; 
         }
 
         public void AddToCart(Album album)

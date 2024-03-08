@@ -11,5 +11,7 @@ namespace MVC_MyMusicStore.Models.CartModels
         public int Count { get; set; }
         public System.DateTime DateCreated { get; set; }
         public virtual Album Album { get; set; }
+
+
     }
 }

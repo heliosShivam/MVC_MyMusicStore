@@ -15,11 +15,12 @@
             <div class="card m-3 p-0" style="width: 18rem;">
                 <div style="height : 16vh ; background-color: bisque " class="m-0"></div>
                 <div class="card-body">
-                    <h5 class="card-title">@i.Title</h5>
+                    <h5 class="card-title">@i.AlbumId , @i.Title</h5>
+
                     <p class="card-text">@i.Price</p>
-                    <p class="button">
-        @Html.ActionLink("Add to cart", "AddToCart", 
-        "ShoppingCart", new { id = i.AlbumId }, "")
+                    <p class="btn btn-primary" >
+                        <a asp-controller="ShoppingCart" asp-action="AddToCart" asp-route-id="@i.AlbumId" style="color:white ; text-decoration:none">Add to cart</a>
+
     </p>
 
                 </div>

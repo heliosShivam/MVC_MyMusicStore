@@ -31,6 +31,7 @@ namespace MVC_MyMusicStore.Controllers
 
                 if (result.Succeeded)
                 {
+                    HttpContext.Session.SetString("Username", user.Username);
                     return RedirectToAction("Index", "Home");
                 }
                 else

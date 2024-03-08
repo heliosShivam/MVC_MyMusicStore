@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MVC_MyMusicStore.Data;
@@ -6,7 +7,7 @@ using MVC_MyMusicStore.Models;
 
 namespace MVC_MyMusicStore.Controllers
 {
-    
+    [Authorize]
     public class AlbumsController : Controller
     {
         private readonly AppDbContext _db;
@@ -62,6 +63,7 @@ namespace MVC_MyMusicStore.Controllers
             }
 
             var album = _db.Albums.Find(id);
+            Console.WriteLine("Print :" + album);
             if (album == null)
             {
                 return NotFound();
