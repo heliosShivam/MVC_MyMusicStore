@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using MVC_MusicStore.Data;
+using MVC_MyMusicStore.Data;
 using MVC_MyMusicStore.Models;
 
-namespace MVC_MusicStore.Controllers
+namespace MVC_MyMusicStore.Controllers
 {
     
     public class AlbumsController : Controller

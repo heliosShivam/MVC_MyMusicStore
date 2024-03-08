@@ -1,12 +1,12 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using MVC_MusicStore.Data;
+using MVC_MyMusicStore.Data;
 using MVC_MyMusicStore.Models;
 using System.Diagnostics;
 
 namespace MVC_MyMusicStore.Controllers
 {
-    [Authorize]
+    
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;

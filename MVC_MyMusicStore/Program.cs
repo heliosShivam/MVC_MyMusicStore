@@ -1,10 +1,10 @@
 using Microsoft.EntityFrameworkCore;
-using MVC_MusicStore.Data;
+using MVC_MyMusicStore.Data;
 using System;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using MVC_MyMusicStore.Models;
-using MVC_MyMusicStore.Data;
+
+
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,16 +16,13 @@ builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(
            )
        );
 
-builder.Services.AddIdentity<IdentityUser , IdentityRole>().AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
+builder.Services.AddDefaultIdentity<AppUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<AppDbContext>();
 
 
-
+/*builder.Services.AddIdentity<AppUser ,IdentityRole>().AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();*/
+builder.Services.AddSession();
 var app = builder.Build();
 
-using (var scope = app.Services.CreateScope())
-{
-    await DbSeeder.SeedData(scope.ServiceProvider);
-}
     // Configure the HTTP request pipeline.
     if (!app.Environment.IsDevelopment())
 {
@@ -38,9 +35,8 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
 app.UseAuthorization();
-
+app.UseSession(); 
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");

@@ -17,7 +17,11 @@
                 <div class="card-body">
                     <h5 class="card-title">@i.Title</h5>
                     <p class="card-text">@i.Price</p>
-                    <a href="#" class="btn btn-primary">Add to cart</a>
+                    <p class="button">
+        @Html.ActionLink("Add to cart", "AddToCart", 
+        "ShoppingCart", new { id = i.AlbumId }, "")
+    </p>
+
                 </div>
             </div>
         }

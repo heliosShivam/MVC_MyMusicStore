@@ -10,7 +10,7 @@ namespace MVC_MyMusicStore.Controllers
         private readonly SignInManager<AppUser> _sm;
         private readonly UserManager<AppUser> _um;
 
-        public AccountController(SignInManager<AppUser> sm , UserManager<AppUser>um)
+        public AccountController(SignInManager<AppUser> sm, UserManager<AppUser> um)
         {
             _sm = sm;
             _um = um;
@@ -27,11 +27,11 @@ namespace MVC_MyMusicStore.Controllers
         {
             if (ModelState.IsValid)
             {
-                var result = await _sm.PasswordSignInAsync(user.Username! , user.Password! , user.RememberMe , false);
+                var result = await _sm.PasswordSignInAsync(user.Username!, user.Password!, user.RememberMe, false);
 
-                if(result.Succeeded)
+                if (result.Succeeded)
                 {
-                    return RedirectToAction("Index" , "Home");
+                    return RedirectToAction("Index", "Home");
                 }
                 else
                 {
@@ -60,30 +60,30 @@ namespace MVC_MyMusicStore.Controllers
                     UserName = Nuser.Email
                 };
 
-                var result = await _um.CreateAsync(user , Nuser.Password!);
+                var result = await _um.CreateAsync(user, Nuser.Password!);
 
                 if (result.Succeeded)
                 {
-                    await _um.AddToRoleAsync(user ,Roles.User.ToString());
-                    await _sm.SignInAsync(user , false);
+
+                    await _sm.SignInAsync(user, false);
 
                     return RedirectToAction("Index", "Home");
                 }
-                foreach(var e in result.Errors)
+                foreach (var e in result.Errors)
                 {
                     ModelState.AddModelError("", e.Description);
                 }
             }
-            
+
 
             return View(Nuser);
         }
 
-        
+
         public async Task<IActionResult> Logout()
         {
             await _sm.SignOutAsync();
-            return RedirectToAction("Index" , "Home");
+            return RedirectToAction("Index", "Home");
         }
     }
 }

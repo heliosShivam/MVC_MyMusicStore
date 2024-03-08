@@ -19,6 +19,6 @@ namespace MVC_MyMusicStore.Models
 
         public List<OrderDetail> OrderDetails { get; set; }
 
-        public List<CartDetail> CartDetail {  get; set; }
+        
     }
 }

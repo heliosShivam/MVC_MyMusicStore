@@ -7,8 +7,9 @@ namespace MVC_MyMusicStore.Models.CartModels
         [Key]
         public int RecordId { get; set; }
         public string CartId { get; set; }
-        public bool isDeleted { get; set; } = false;
-
-        public string UserId { get; set;}
+        public int AlbumId { get; set; }
+        public int Count { get; set; }
+        public System.DateTime DateCreated { get; set; }
+        public virtual Album Album { get; set; }
     }
 }

@@ -1,0 +1,87 @@
+﻿@model MVC_MyMusicStore.Models.ViewModels.ShoppingCartViewModel
+@{
+    ViewData["Title"] = "Shopping Cart";
+}
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(function () {
+            
+            $(".RemoveLink").click(function (e) {
+                e.preventDefault();
+                // id from the link
+                var recordToDelete = $(this).data("id");
+                if (recordToDelete != '') {
+                    
+                    $.post("/ShoppingCart/RemoveFromCart", { "id": recordToDelete },
+                        function (data) {
+                            //  requests get 
+                            
+                            if (data.ItemCount === 0) {
+                                $('#row-' + data.DeleteId).fadeOut('slow');
+                            } else {
+                                $('#item-count-' + data.DeleteId).text(data.ItemCount);
+                            }
+                            $('#cart-total').text(data.CartTotal);
+                            $('#update-message').text(data.Message);
+                            $('#cart-status').text('Cart (' + data.CartCount + ')');
+                        });
+                }
+            });
+        });
+    </script>
+}
+
+<h3>
+    <em>Review</em> your cart:
+</h3>
+<p class="button">
+    <a asp-action="AddressAndPayment" asp-controller="Checkout">Checkout >></a>
+</p>
+<div id="update-message"></div>
+<table>
+    <thead>
+        <tr>
+            <th>
+                Album Name
+            </th>
+            <th>
+                Price (each)
+            </th>
+            <th>
+                Quantity
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.CartItems)
+        {
+            <tr id="row-@item.RecordId">
+                <td>
+                    <a asp-action="Details" asp-controller="Store" asp-route-id="@item.AlbumId">@item.Album.Title</a>
+                </td>
+                <td>
+                    @item.Album.Price
+                </td>
+                <td id="item-count-@item.RecordId">
+                    @item.Count
+                </td>
+                <td>
+                    <a href="#" class="RemoveLink" data-id="@item.RecordId">Remove from cart</a>
+                </td>
+            </tr>
+        }
+        <tr>
+            <td>
+                Total
+            </td>
+            <td></td>
+            <td></td>
+            <td id="cart-total">
+                @Model.CartTotal
+            </td>
+        </tr>
+    </tbody>
+</table>
