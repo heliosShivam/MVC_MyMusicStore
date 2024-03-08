@@ -36,7 +36,7 @@
 <h3>
     <em>Review</em> your cart:
 </h3>
-<a class="btn btn-secondary" asp-action="EmptyCart" asp-controller="Shopping">Empty</a>
+<@* a class="btn btn-secondary" asp-action="EmptyCart" asp-controller="Shopping">Empty</a> *@
 <p class="button">
     <a asp-action="AddressAndPayment" asp-controller="Checkout">Checkout >></a>
 </p>
@@ -72,7 +72,7 @@
              
 
             <td>
-                @* <a asp-action="Details" asp-controller="Store" asp-route-id="@item.AlbumId">@item.AlbumId</a> *@
+                <a asp-action="Details" asp-controller="Store" asp-route-id="@item.Album.Title">@item.Album.Title</a>
             </td>
             
 

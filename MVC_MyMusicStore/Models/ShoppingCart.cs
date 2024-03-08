@@ -4,6 +4,7 @@ using MVC_MyMusicStore.Models;
 using MVC_MyMusicStore.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace MVC_MyMusicStore.Models
 {
@@ -91,9 +92,9 @@ namespace MVC_MyMusicStore.Models
             _db.SaveChanges();
         }
 
-        public List<Cart> GetCartItems()
+        public IQueryable<Cart> GetCartItems()
         {
-            return _db.Carts.Where(cart => cart.CartId == _shoppingCartId).ToList();
+            return _db.Carts.Include(x => x.Album).Where(cart => cart.CartId == _shoppingCartId);
         }
 
         public int GetCount()

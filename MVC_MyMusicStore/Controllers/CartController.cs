@@ -26,7 +26,7 @@ namespace MVC_MyMusicStore.Controllers
 
             var viewModel = new ShoppingCartViewModel
             {
-                CartItems = cart.GetCartItems(),
+                CartItems = cart.GetCartItems().ToList(),
                 CartTotal = cart.GetTotal(),
                 
             };
