@@ -36,20 +36,20 @@
 <h3>
     <em>Review</em> your cart:
 </h3>
-<@* a class="btn btn-secondary" asp-action="EmptyCart" asp-controller="Shopping">Empty</a> *@
+
 <p class="button">
-    <a asp-action="AddressAndPayment" asp-controller="Checkout">Checkout >></a>
+    <a asp-action="Index" asp-controller="Checkout" class="btn btn-primary">Checkout >></a>
 </p>
 <div id="update-message"></div>
 <table class="table">
     <thead>
         <tr>
             <th>
-                Album Id
+                Album Name
             </th>
-            @* <th>
+            <th>
                 Price (each)
-            </th> *@
+            </th>
             <th>
                 Quantity
             </th>
@@ -65,15 +65,16 @@
             @foreach (var item in Model.CartItems)
             {
              <tr>
-                    <td>@item.AlbumId</td>
+                    <td>@item.Album.Title</td>
+                    <td>@item.Album.Price</td>
                     <td>@item.Count</td>
-                    <td><a data-id="@item.RecordId" class="RemoveLink btn btn-danger">-</a></td>
+                    <td><a data-id="@item.RecordId" class="RemoveLink btn btn-danger" onClick="window.location.reload();">-</a></td>
              </tr>
              
 
-            <td>
+            @* <td>
                 <a asp-action="Details" asp-controller="Store" asp-route-id="@item.Album.Title">@item.Album.Title</a>
-            </td>
+            </td> *@
             
 
                 @* <tr id="row-@item.RecordId">

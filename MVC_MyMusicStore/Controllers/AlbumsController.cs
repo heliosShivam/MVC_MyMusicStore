@@ -20,7 +20,7 @@ namespace MVC_MyMusicStore.Controllers
         // GET: Albums
         public IActionResult Index()
         {
-            var appDbContext = _db.Albums.Include(a => a.Artist).Include(a => a.Genre);
+            var appDbContext = _db.Albums.Include(a => a.Artist).Include(a => a.Genre).OrderBy(a => a.Title);
             return View(appDbContext.ToList());
         }
 

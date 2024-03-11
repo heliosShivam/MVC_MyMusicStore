@@ -50,7 +50,7 @@ namespace MVC_MyMusicStore.Controllers
             
             cart.AddToCart(addedAlbum);
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Index" , "Home");
         }
 
         [HttpPost]
@@ -84,6 +84,7 @@ namespace MVC_MyMusicStore.Controllers
                 DeleteId = id
             };
             return Json(results);
+            /*return RedirectToAction("Index");*/
         }
 
     }

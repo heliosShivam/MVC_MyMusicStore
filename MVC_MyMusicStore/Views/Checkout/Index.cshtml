@@ -1,0 +1,58 @@
+﻿@model MVC_MyMusicStore.Models.CartModels.Order;
+
+<h2>Address and payment</h2>
+<br />
+<form asp-action="Index" method="post" class="form">
+    <div asp-validation-summary="ModelOnly"></div>
+    <div class="mb-3 col-6">
+        <lable asp-for="FirstName" class="form-label">First Name</lable>
+        <input asp-for="FirstName" type="text" id="Fname" placeholder="Enter your first name" class="form-control" />      
+    </div>
+    <div class="mb-3 col-6">
+        <lable asp-for="LastName" class="form-label">Last Name</lable>
+        <input asp-for="LastName" type="text" id="Lname" placeholder="Enter your last name" class="form-control" />
+    </div>
+    <div class="mb-3 col-6">
+        <lable asp-for ="Address" class="form-label">Address</lable>
+        <textarea asp-for="Address" class="form-control" rows="3" placeholder="Enter your address"></textarea>
+    </div>
+    <div class="mb-3 col-6">
+        <lable asp-for="City" class="form-label">City</lable>
+        <input asp-for="City" type="text" id="City" placeholder="Enter your city" class="form-control" />
+    </div>
+    <div class="mb-3 col-6">
+        <lable asp-for="PostalCode" for="Pin" class="form-label">Pin Code</lable>
+        <input asp-for="PostalCode" type="number" id="Pin" placeholder="Enter your Pin code" class="form-control" />
+    </div>
+    <div class="mb-3 col-6">
+        <lable asp-for="State" class="form-label">State</lable>
+        <input asp-for="State" type="text" id="State" placeholder="Enter your state" class="form-control" />
+    </div>
+    <div class="mb-3 col-6">
+        <lable asp-for="Country" class="form-label">Country</lable>
+        <input asp-for="Country" type="text" id="Country" placeholder="Enter your country" class="form-control" />
+    </div>
+    <div class="mb-3 col-6">
+        <lable asp-for="Phone" class="form-label">Phone</lable>
+        <input asp-for="Phone" type="number" id="Phone" placeholder="Enter your contact number" class="form-control" />
+    </div>
+    <div class="mb-3 col-6">
+        <lable asp-for="Email" class="form-label">Email</lable>
+        <input asp-for="Email" type="email" id="Email" placeholder="Enter your email" class="form-control" />
+    </div>
+    <br />
+    <div class="mb-3 col-6">
+        <span>All music is free with promocode "FREE" !</span>
+        <lable for="PromoCode" class="form-label">Promo Code</lable>
+        <input type="text" id="PromoCode" name="PromoCode" placeholder="Enter Promo Code" class="form-control" />
+    </div>
+
+    <div class="mb-3 col-6">
+        <button type="submit" class="btn btn-primary">Submit Order</button>
+        
+    </div>
+
+    
+</form>
+
+       

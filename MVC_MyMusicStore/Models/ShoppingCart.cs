@@ -94,7 +94,7 @@ namespace MVC_MyMusicStore.Models
 
         public IQueryable<Cart> GetCartItems()
         {
-            return _db.Carts.Include(x => x.Album).Where(cart => cart.CartId == _shoppingCartId);
+            return _db.Carts.Include(x => x.Album).Where(cart => cart.CartId == _shoppingCartId).OrderBy(x => x.Album.Title);
         }
 
         public int GetCount()
