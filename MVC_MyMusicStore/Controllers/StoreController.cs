@@ -16,6 +16,7 @@ namespace MVC_MyMusicStore.Controllers
         }
         public IActionResult Index()
         {
+            
             var genres = _db.Genres.ToList();
 
             return View(genres);
@@ -23,9 +24,12 @@ namespace MVC_MyMusicStore.Controllers
         }
         public IActionResult Browse(string genre)
         {
+            
             var genreModel = _db.Genres.Include("Albums")
             .Single(g => g.Name == genre);
+           
             return View(genreModel);
+            
         }
 
         public IActionResult Details(int id)
@@ -33,20 +37,21 @@ namespace MVC_MyMusicStore.Controllers
 
             /*var album = new Album { Title = "Album " + id };
             return View(album);*/
+            HttpContext.Session.SetString("LastVisitedPage", HttpContext.Request.Path);
             var album = _db.Albums
-            .Include(a => a.Genre)
-            .Include(a => a.Artist)// Include the Genre navigation property
+            .Include(a => a.Genre)//Included genre to get genre names
+            .Include(a => a.Artist)// Include the artist to get artist name
             .FirstOrDefault(a => a.AlbumId == id);
 
             if (album == null)
             {
-                return NotFound(); // Or handle the case when album is not found
+                return NotFound(); // when album is not found
             }
 
             return View(album);
         }
 
-        //
+        
         // GET: /Store/GenreMenu
 
         /*public IActionResult GenreMenu()

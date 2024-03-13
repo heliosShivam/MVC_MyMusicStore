@@ -24,8 +24,9 @@ namespace MVC_MyMusicStore.Controllers
         {
             var genres = _db.Genres.ToList();
             ViewData["Genres"] = genres;
-
+            
             var items = _db.Albums.Include(a => a.Genre).ToList();
+            
             
             return View(items);
         }

@@ -53,7 +53,7 @@ namespace MVC_MyMusicStore.Migrations
 
                     b.HasIndex("GenreId");
 
-                    b.ToTable("Albums");
+                    b.ToTable("Albums", (string)null);
                 });
 
             modelBuilder.Entity("MVC_MyMusicStore.Models.AppUser", b =>
@@ -139,7 +139,7 @@ namespace MVC_MyMusicStore.Migrations
 
                     b.HasKey("ArtistId");
 
-                    b.ToTable("Artists");
+                    b.ToTable("Artists", (string)null);
                 });
 
             modelBuilder.Entity("MVC_MyMusicStore.Models.CartModels.Cart", b =>
@@ -166,7 +166,7 @@ namespace MVC_MyMusicStore.Migrations
 
                     b.HasIndex("AlbumId");
 
-                    b.ToTable("Carts");
+                    b.ToTable("Carts", (string)null);
                 });
 
             modelBuilder.Entity("MVC_MyMusicStore.Models.CartModels.Order", b =>
@@ -225,7 +225,7 @@ namespace MVC_MyMusicStore.Migrations
 
                     b.HasKey("OrderId");
 
-                    b.ToTable("Orders");
+                    b.ToTable("Orders", (string)null);
                 });
 
             modelBuilder.Entity("MVC_MyMusicStore.Models.CartModels.OrderDetail", b =>
@@ -254,7 +254,7 @@ namespace MVC_MyMusicStore.Migrations
 
                     b.HasIndex("OrderId");
 
-                    b.ToTable("OrderDetail");
+                    b.ToTable("OrderDetail", (string)null);
                 });
 
             modelBuilder.Entity("MVC_MyMusicStore.Models.Genre", b =>
@@ -271,7 +271,7 @@ namespace MVC_MyMusicStore.Migrations
 
                     b.HasKey("GenreId");
 
-                    b.ToTable("Genres");
+                    b.ToTable("Genres", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

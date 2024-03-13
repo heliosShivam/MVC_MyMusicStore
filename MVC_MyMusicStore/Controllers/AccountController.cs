@@ -29,12 +29,18 @@ namespace MVC_MyMusicStore.Controllers
             if (ModelState.IsValid)
             {
                 var result = await _sm.PasswordSignInAsync(user.Username!, user.Password!, user.RememberMe, false);
-
-                if (result.Succeeded)
+                var lastVisitedPage = HttpContext.Session.GetString("LastVisitedPage");
+                Console.WriteLine("Visited" + lastVisitedPage);
+                if (result.Succeeded && !string.IsNullOrEmpty(lastVisitedPage))
                 {
-                    
-                    HttpContext.Session.SetString("Username", user.Username);
 
+                    HttpContext.Session.Remove("LastVisitedPage");
+                    Console.WriteLine("Visited after login" + lastVisitedPage);
+
+                    return Redirect(lastVisitedPage);
+                }
+                else if(result.Succeeded && lastVisitedPage == null)
+                {
                     return RedirectToAction("Index", "Home");
                 }
                 else
@@ -42,6 +48,7 @@ namespace MVC_MyMusicStore.Controllers
                     ModelState.AddModelError("", "Please enter correct credentials");
                     return View(user);
                 }
+
             }
             return View(user);
         }
@@ -103,12 +110,12 @@ namespace MVC_MyMusicStore.Controllers
 
                     if (result.Succeeded)
                     {
-                        // Password reset successful, redirect to login or another page
+                        // Password reset successful
                         return RedirectToAction("Login");
                     }
                     else
                     {
-                        // Password reset failed, handle errors
+                        // Password reset failed
                         foreach (var error in result.Errors)
                         {
                             ModelState.AddModelError(string.Empty, error.Description);
@@ -117,12 +124,12 @@ namespace MVC_MyMusicStore.Controllers
                 }
                 else
                 {
-                    // User not found, handle error
+                    // User not found
                     ModelState.AddModelError(string.Empty, "User not found.");
                 }
             }
 
-            // If the ModelState is not valid or the password reset fails, return to the reset password page with errors
+            
             return View(model);
         }
 

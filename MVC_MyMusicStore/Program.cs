@@ -25,6 +25,7 @@ internal class Program
 
         builder.Services.AddSession(options =>
         {
+            options.Cookie.Name = "YourApp.Session";
             // Set a short timeout for easy testing.
             options.IdleTimeout = TimeSpan.FromMinutes(30); // Adjust as needed
             options.Cookie.HttpOnly = true;
