@@ -8,7 +8,7 @@
 <div class="row flex justify-content-center">
     <div class="col-md-4">
         <div class="card">
-        <h4 class="card-header">Register</h4>
+        <h4 class="card-header">Login</h4>
 
         <div class="card-body">
             <form asp-action="Login" method="post" class="form">
@@ -17,10 +17,17 @@
                     <label asp-for="Username"></label>
                     <input asp-for="Username" class="form-control" />
                     <span asp-validation-for="Username" class="text-danger"></span>
-                </div><div class="mb-1">
+                </div>
+                
+                <div class="mb-1">
                     <label asp-for="Password"></label>
-                    <input asp-for="Password" class="form-control" />
-                    <span asp-validation-for="Password" class="text-danger"></span>
+                        <div class="input-group">
+                             <input asp-for="Password" class="form-control" id="password" />
+                               <div class="input-group-append">
+                                   <button type="button" class="btn btn-outline-secondary" onclick="togglePasswordVisibility()"><i class="fa fa-eye "></i></button>
+                               </div>
+                        </div>
+                     <span asp-validation-for="Password" class="text-danger"></span>
                 </div>
                 <div class="mb-1 form-check">
                     <label class="form-check-label">
@@ -29,12 +36,16 @@
                 </div>
                 <div class="d-grid gap-2 col-6 mx-auto">
                    <div class="row">
-                        <input type="submit" value="Login" class="btn btn-primary" />
+                            <input type="submit" value="Login" class="btn btn-primary" onclick="history.go(-1)" />
                    </div>
                    
                    <div class="row">
                         <p>Don't have an account?</p>
                         <a class="btn btn-secondary" asp-action="Register">Register</a>
+                   </div>
+                        <div class="row" style="text-align:center">
+
+                            <a asp-action="ResetPassword" style="text-decoration:none">Forget Password?</a>
                    </div>
                 </div>
 
@@ -43,8 +54,21 @@
     </div>
     </div>
     </div>
+<script>
+    function togglePasswordVisibility() {
+        var passwordInput = document.getElementById('password');
+        if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+        } else {
+            passwordInput.type = 'password';
+        }
+    }
+</script>
+
     @section Scripts{
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
+
     }
+
     }

@@ -5,9 +5,11 @@ using System.Text.Encodings.Web;
 using MVC_MyMusicStore.Data;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MVC_MyMusicStore.Controllers
 {
+    [Authorize]
     public class ShoppingCartController : Controller
     {
         private readonly AppDbContext _storeDB;
@@ -50,7 +52,7 @@ namespace MVC_MyMusicStore.Controllers
             
             cart.AddToCart(addedAlbum);
 
-            return RedirectToAction("Index" , "Home");
+            return RedirectToAction("Index" , "ShoppingCart");
         }
 
         [HttpPost]
@@ -86,6 +88,15 @@ namespace MVC_MyMusicStore.Controllers
             return Json(results);
             /*return RedirectToAction("Index");*/
         }
+        public IActionResult CartSummary()
+        {
+            var cart = ShoppingCart.GetCart(HttpContext.RequestServices);
+
+            ViewData["CartCount"] = cart.GetCount();
+            return PartialView("CartSummary");
+        }
+
+
 
     }
 }

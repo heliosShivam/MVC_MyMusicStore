@@ -6,6 +6,7 @@ namespace MVC_MyMusicStore.Models.UserModels
     {
         [Required]
         public string? Name { get; set; }
+
         [Required]
         [DataType(DataType.EmailAddress)]
         public string? Email { get; set; }
@@ -15,6 +16,7 @@ namespace MVC_MyMusicStore.Models.UserModels
         public string Password { get; set; }
 
         [Compare("Password" , ErrorMessage ="Doesn't match with password")]
+        [DataType(DataType.Password)]
         public string ConfirmPassword {  get; set; }    
     }
 }

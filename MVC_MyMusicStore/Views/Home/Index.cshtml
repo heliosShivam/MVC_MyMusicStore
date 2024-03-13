@@ -6,25 +6,46 @@
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
+    <h2>Albums Available</h2>
 </div>
-<div class="continer">
-    <h3>Albums Available</h3>
-    <div class="row">
+<hr class="hr" />
+
+<div class="continer" style="display:flex ; justify-content:center">
+    
+    
+    @* <div>
+        <ul id="categories" class="list-group list-group-flush mt-2">
+            <li class=" list-group-item"><h5>Genres</h5></li>
+            @foreach (var g in Model)
+            {
+                <li class="list-group-item m-1">
+                    @Html.ActionLink(g.Genre.Name,
+                             "Browse", "Store",
+                             new { Genre = g.Genre.Name }, null)
+                </li>
+            }
+        </ul>
+    </div> *@
+    @await Html.PartialAsync("_GetGenre", ViewData["Genres"])
+
+    <div class="vr" style="height: 30em;"></div>
+    
+    <div class="row ms-3" style="display:flex; justify-content:flex-start">
         @foreach(var i in Model)
         {
-            <div class="card m-3 p-0" style="width: 18rem;">
-                <img src="https://assets.designhill.com/resize_img.php?atyp=st_page_file&pth=ft_bt_liwr2hil_org||BT587142||left_image_with_right_2heading_and_info_left_image_img&flp=1607683720-15649929725fd34e884d1fe5-14763267.jpg" class="card-img-top" alt="...">
+            <div class="card m-3 p-0" style="width: 18rem; height:20em">
+                <img src="@i.AlbumImgUrl" class="card-img-top" style="height:70%" alt="...">
                 @* <div style="height : 16vh ; background-color: bisque " class="m-0"></div> *@
                 <div class="card-body">
-                    <h5 class="card-title"> @i.Title</h5>
+                    <a asp-action="Details" asp-controller="Store" asp-route-id="@i.AlbumId"><h5 class="card-title"> @i.Title</h5></a>
 
-                    <p class="card-text">@i.Price</p>
-                    <p class="btn btn-primary" >
-                        <a asp-controller="ShoppingCart" asp-action="AddToCart" asp-route-id="@i.AlbumId" style="color:white ; text-decoration:none">Add to cart</a>
-
-    </p>
+                    <p class="card-text">Price : $@i.Price</p>
+                    @* <p class="btn btn-primary" >
+                        <a asp-controller="Store" asp-action="Details" asp-route-id="@i.AlbumId" style="color:white ; text-decoration:none">Add to cart</a>
+                    </p> *@
 
                 </div>
+                
             </div>
         }
     

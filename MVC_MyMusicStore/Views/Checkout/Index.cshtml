@@ -3,48 +3,58 @@
 <h2>Address and payment</h2>
 <br />
 <form asp-action="Index" method="post" class="form">
-    <div asp-validation-summary="ModelOnly"></div>
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <div class="mb-3 col-6">
         <lable asp-for="FirstName" class="form-label">First Name</lable>
-        <input asp-for="FirstName" type="text" id="Fname" placeholder="Enter your first name" class="form-control" />      
+        <input asp-for="FirstName" type="text" id="Fname" placeholder="Enter your first name" class="form-control" />  
+        <span asp-validation-for="FirstName" class="text-danger"></span>
     </div>
     <div class="mb-3 col-6">
         <lable asp-for="LastName" class="form-label">Last Name</lable>
         <input asp-for="LastName" type="text" id="Lname" placeholder="Enter your last name" class="form-control" />
+        <span asp-validation-for="LastName" class="text-danger"></span>
     </div>
     <div class="mb-3 col-6">
         <lable asp-for ="Address" class="form-label">Address</lable>
         <textarea asp-for="Address" class="form-control" rows="3" placeholder="Enter your address"></textarea>
+        <span asp-validation-for="Address" class="text-danger"></span>
     </div>
     <div class="mb-3 col-6">
         <lable asp-for="City" class="form-label">City</lable>
         <input asp-for="City" type="text" id="City" placeholder="Enter your city" class="form-control" />
+        <span asp-validation-for="City" class="text-danger"></span>
     </div>
     <div class="mb-3 col-6">
         <lable asp-for="PostalCode" for="Pin" class="form-label">Pin Code</lable>
         <input asp-for="PostalCode" type="number" id="Pin" placeholder="Enter your Pin code" class="form-control" />
+        <span asp-validation-for="PostalCode" class="text-danger"></span>
     </div>
     <div class="mb-3 col-6">
         <lable asp-for="State" class="form-label">State</lable>
         <input asp-for="State" type="text" id="State" placeholder="Enter your state" class="form-control" />
+        <span asp-validation-for="State" class="text-danger"></span>
     </div>
     <div class="mb-3 col-6">
         <lable asp-for="Country" class="form-label">Country</lable>
         <input asp-for="Country" type="text" id="Country" placeholder="Enter your country" class="form-control" />
+        <span asp-validation-for="Country" class="text-danger"></span>
     </div>
     <div class="mb-3 col-6">
         <lable asp-for="Phone" class="form-label">Phone</lable>
-        <input asp-for="Phone" type="number" id="Phone" placeholder="Enter your contact number" class="form-control" />
+        <input asp-for="Phone" type="tel" id="Phone" pattern="[0-9]{10}" placeholder="Enter 10 digit phone number" class="form-control" />
+        <span asp-validation-for="Phone" class="text-danger"></span>
     </div>
     <div class="mb-3 col-6">
         <lable asp-for="Email" class="form-label">Email</lable>
         <input asp-for="Email" type="email" id="Email" placeholder="Enter your email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
     </div>
     <br />
     <div class="mb-3 col-6">
         <span>All music is free with promocode "FREE" !</span>
         <lable for="PromoCode" class="form-label">Promo Code</lable>
         <input type="text" id="PromoCode" name="PromoCode" placeholder="Enter Promo Code" class="form-control" />
+        <span validation-for="PromoCode" class="text-danger"></span>
     </div>
 
     <div class="mb-3 col-6">

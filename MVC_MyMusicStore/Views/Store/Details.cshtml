@@ -2,4 +2,35 @@
 @{
     ViewBag.Title = "Details";
 }
-<h2>Details</h2>
+
+<div class="container">
+    <h2>Album : @Model.Title</h2>
+    
+        <div class="card m-3 p-0" style="width: 80rem; height:auto; background-color:antiquewhite ">
+            <div class="row g-0" style="height:30em">
+                <div class="col-4" style="height:inherit">
+                <img src="@Model.AlbumImgUrl" class="" style="height:inherit; width:100%" alt="...">
+                </div>
+                @* <div style="height : 16vh ; background-color: bisque " class="m-0"></div> *@
+                <div class="col-8" style="height:inherit">
+                <div class="card-body">
+                    <h5 class="card-title m-3" style="font-size:1.3rem">Album name :  @Model.Title</h5>
+
+                <ul class="list-group list-group-flush" style="font-size : 1.3rem">
+                    <li class="list-group-item" style="background-color: antiquewhite">Genre : @Model.Genre.Name</li>
+                    <li class="list-group-item" style="background-color: antiquewhite">Artist : @Model.Artist.Name</li>
+                    <li class="list-group-item" style="background-color: antiquewhite">Price : $@Model.Price</li>
+                    
+                 </ul>
+
+                    <p class="btn btn-primary m-3">
+                        <a asp-controller="ShoppingCart" asp-action="AddToCart" asp-route-id="@Model.AlbumId" style="color:white ; text-decoration:none">Add to cart</a>
+                    </p>
+                </div>
+
+                </div>
+            </div>
+        </div>
+</div>
+
+

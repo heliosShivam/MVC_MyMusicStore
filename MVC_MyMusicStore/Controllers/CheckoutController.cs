@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using MVC_MyMusicStore.Data;
 using MVC_MyMusicStore.Models;
 using MVC_MyMusicStore.Models.CartModels;
 
 namespace MVC_MyMusicStore.Controllers
 {
+    [Authorize]
     public class CheckoutController : Controller
     {
         private readonly AppDbContext _db;

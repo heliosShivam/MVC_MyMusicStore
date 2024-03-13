@@ -66,7 +66,7 @@
             {
              <tr>
                     <td>@item.Album.Title</td>
-                    <td>@item.Album.Price</td>
+                    <td>$@item.Album.Price</td>
                     <td>@item.Count</td>
                     <td><a data-id="@item.RecordId" class="RemoveLink btn btn-danger" onClick="window.location.reload();">-</a></td>
              </tr>
@@ -95,7 +95,7 @@
 
         <tr>
             <td>
-            Total : @Model.CartTotal
+            Total : $@Model.CartTotal
             </td>        
         </tr>
     </tbody>

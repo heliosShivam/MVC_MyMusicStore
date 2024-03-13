@@ -1,12 +1,14 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using MVC_MyMusicStore.Data;
 using MVC_MyMusicStore.Models;
 using System.Diagnostics;
 
 namespace MVC_MyMusicStore.Controllers
 {
-    [Authorize]
+    
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -20,7 +22,11 @@ namespace MVC_MyMusicStore.Controllers
 
         public IActionResult Index()
         {
-            var items = _db.Albums.ToList();
+            var genres = _db.Genres.ToList();
+            ViewData["Genres"] = genres;
+
+            var items = _db.Albums.Include(a => a.Genre).ToList();
+            
             return View(items);
         }
 
@@ -34,5 +40,12 @@ namespace MVC_MyMusicStore.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+       /* public IActionResult GetGenre()
+        {
+           
+            return View("_GetGenre", genres);
+
+        }*/
     }
 }

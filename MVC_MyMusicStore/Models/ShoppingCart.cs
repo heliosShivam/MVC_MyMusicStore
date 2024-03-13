@@ -159,7 +159,7 @@ namespace MVC_MyMusicStore.Models
             return context.Session.GetString(CartSessionKey);
         }
 
-      /*  public void MigrateCart(string userName)
+        public void MigrateCart(string userName)
         {
             var shoppingCart = _db.Carts.Where(c => c.CartId == _shoppingCartId);
 
@@ -169,6 +169,6 @@ namespace MVC_MyMusicStore.Models
             }
 
             _db.SaveChanges();
-        }*/
+        }
     }
 }

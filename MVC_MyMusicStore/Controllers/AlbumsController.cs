@@ -7,7 +7,7 @@ using MVC_MyMusicStore.Models;
 
 namespace MVC_MyMusicStore.Controllers
 {
-    [Authorize]
+    [Authorize(Policy = "Admin")]
     public class AlbumsController : Controller
     {
         private readonly AppDbContext _db;

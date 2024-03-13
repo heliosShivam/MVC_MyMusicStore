@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using MVC_MyMusicStore.Models;
 using MVC_MyMusicStore.Models.UserModels;
 
+
 namespace MVC_MyMusicStore.Controllers
 {
     public class AccountController : Controller
@@ -31,7 +32,9 @@ namespace MVC_MyMusicStore.Controllers
 
                 if (result.Succeeded)
                 {
+                    
                     HttpContext.Session.SetString("Username", user.Username);
+
                     return RedirectToAction("Index", "Home");
                 }
                 else
@@ -78,6 +81,49 @@ namespace MVC_MyMusicStore.Controllers
 
 
             return View(Nuser);
+        }
+
+        [HttpGet]
+        public IActionResult ResetPassword()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ResetPassword(ResetPasswordViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = await _um.FindByEmailAsync(model.Email);
+
+                if (user != null)
+                {
+                    var resetToken = await _um.GeneratePasswordResetTokenAsync(user);
+                    var result = await _um.ResetPasswordAsync(user, resetToken, model.NewPassword);
+
+                    if (result.Succeeded)
+                    {
+                        // Password reset successful, redirect to login or another page
+                        return RedirectToAction("Login");
+                    }
+                    else
+                    {
+                        // Password reset failed, handle errors
+                        foreach (var error in result.Errors)
+                        {
+                            ModelState.AddModelError(string.Empty, error.Description);
+                        }
+                    }
+                }
+                else
+                {
+                    // User not found, handle error
+                    ModelState.AddModelError(string.Empty, "User not found.");
+                }
+            }
+
+            // If the ModelState is not valid or the password reset fails, return to the reset password page with errors
+            return View(model);
         }
 
 

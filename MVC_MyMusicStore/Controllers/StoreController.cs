@@ -17,21 +17,45 @@ namespace MVC_MyMusicStore.Controllers
         public IActionResult Index()
         {
             var genres = _db.Genres.ToList();
-            
+
             return View(genres);
 
         }
-        public ActionResult Browse(string genre)
+        public IActionResult Browse(string genre)
         {
             var genreModel = _db.Genres.Include("Albums")
-        .Single(g => g.Name == genre);
+            .Single(g => g.Name == genre);
             return View(genreModel);
         }
 
         public IActionResult Details(int id)
         {
-            var album = new Album { Title = "Album " + id };
+
+            /*var album = new Album { Title = "Album " + id };
+            return View(album);*/
+            var album = _db.Albums
+            .Include(a => a.Genre)
+            .Include(a => a.Artist)// Include the Genre navigation property
+            .FirstOrDefault(a => a.AlbumId == id);
+
+            if (album == null)
+            {
+                return NotFound(); // Or handle the case when album is not found
+            }
+
             return View(album);
         }
+
+        //
+        // GET: /Store/GenreMenu
+
+        /*public IActionResult GenreMenu()
+        {
+            var genres = _db.Genres.ToList();
+
+            return PartialView(genres);
+
+
+        }*/
     }
 }

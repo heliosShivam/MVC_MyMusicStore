@@ -27,15 +27,18 @@ namespace MVC_MyMusicStore.Models.CartModels
         public string State { get; set; }
         //
         [Required(ErrorMessage = "Pin code is required")]
+        [DataType(DataType.PostalCode)]
         public string PostalCode { get; set; }
         //
         [Required (ErrorMessage = "Enter your country")]
         public string Country { get; set; }
         //
         [Required(ErrorMessage = "Phone number is required")]
+        [DataType(DataType.PhoneNumber)]
         public string Phone { get; set; }
         //
         [Required(ErrorMessage ="Email is required")]
+        [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
         //
         [ScaffoldColumn(false)]
