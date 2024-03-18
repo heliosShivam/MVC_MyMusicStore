@@ -1,11 +1,11 @@
 ﻿@model Album
 
-<h4>Album</h4>
+<h4 class="text-light">Album</h4>
 <hr />
 
-<form method="post">
+<form method="post" class="text-light">
 
-    <div class="form-group">
+    <div class="form-group ">
         <label asp-for="GenreId" class="control-label"></label>
         <select asp-for="GenreId" class="form-control" asp-items="ViewBag.GenreId"></select>
     </div>

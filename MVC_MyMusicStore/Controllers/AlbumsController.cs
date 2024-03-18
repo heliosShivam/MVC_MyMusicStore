@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MVC_MyMusicStore.Data;
 using MVC_MyMusicStore.Models;
+using X.PagedList;
 
 namespace MVC_MyMusicStore.Controllers
 {
@@ -18,11 +19,23 @@ namespace MVC_MyMusicStore.Controllers
         }
 
         // GET: Albums
-        public IActionResult Index()
+        [HttpGet]
+        public IActionResult Index(string searchText , int? page)
         {
-            var appDbContext = _db.Albums.Include(a => a.Artist).Include(a => a.Genre).OrderBy(a => a.Title);
-            return View(appDbContext.ToList());
+            
+            IQueryable<Album> albums  = _db.Albums.Include(a => a.Artist).Include(a => a.Genre);
+            if (!string.IsNullOrEmpty(searchText))
+            {
+                albums = albums.Where(a => (a.Title.Contains(searchText) 
+                || a.Artist.Name.Contains(searchText) 
+                || a.Genre.Name.Contains(searchText)));
+            }
+            int pageNumber = page ?? 1;
+            int pageSize = 10;
+
+            return View(albums.OrderBy(a => a.Title).ToList());
         }
+
 
         // GET: Albums/Create
         [HttpGet]

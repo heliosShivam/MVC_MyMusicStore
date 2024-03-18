@@ -47,5 +47,6 @@ namespace MVC_MyMusicStore.Models.CartModels
         public System.DateTime OrderDate { get; set; }
         //
         public List<OrderDetail> OrderDetails { get; set; }
+        public string? Status { get; set; }
     }
 }

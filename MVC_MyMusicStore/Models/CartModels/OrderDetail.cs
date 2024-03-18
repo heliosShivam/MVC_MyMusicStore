@@ -10,6 +10,10 @@
         public virtual Album Album { get; set; }
         public virtual Order Order { get; set; }
 
-
+       
     }
+    /*public void RemoveOrder()
+    {
+        var orderdetail = _db.
+    }*/
 }

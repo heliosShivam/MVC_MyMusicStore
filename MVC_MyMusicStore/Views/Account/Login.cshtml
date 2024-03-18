@@ -7,7 +7,7 @@
 
 <div class="row flex justify-content-center">
     <div class="col-md-4">
-        <div class="card">
+        <div class="card" style="color:white; background-color:#4047d5">
         <h4 class="card-header">Login</h4>
 
         <div class="card-body">
@@ -24,7 +24,7 @@
                         <div class="input-group">
                              <input asp-for="Password" class="form-control" id="password" />
                                <div class="input-group-append">
-                                   <button type="button" class="btn btn-outline-secondary" onclick="togglePasswordVisibility()"><i class="fa fa-eye "></i></button>
+                                   <button type="button" class="btn btn-dark" onclick="togglePasswordVisibility()"><i class="fa fa-eye" style="color:white"></i></button>
                                </div>
                         </div>
                      <span asp-validation-for="Password" class="text-danger"></span>
@@ -36,7 +36,7 @@
                 </div>
                 <div class="d-grid gap-2 col-6 mx-auto">
                    <div class="row">
-                            <input type="submit" value="Login" class="btn btn-primary" />
+                            <input type="submit" value="Login" class="btn text-light" style="background:#171718"/>
                    </div>
                    
                    <div class="row">
@@ -45,7 +45,7 @@
                    </div>
                         <div class="row" style="text-align:center">
 
-                            <a asp-action="ResetPassword" style="text-decoration:none">Forget Password?</a>
+                            <a asp-action="ResetPassword" style="text-decoration:none; color:white">Forget Password?</a>
                    </div>
                 </div>
 

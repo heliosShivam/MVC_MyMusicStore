@@ -20,16 +20,21 @@ namespace MVC_MyMusicStore.Controllers
             _db = db;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index(string searchString)
         {
             var genres = _db.Genres.ToList();
             ViewData["Genres"] = genres;
             
-            var items = _db.Albums.Include(a => a.Genre).ToList();
-            
-            
-            return View(items);
+            //var items = _db.Albums.Include(a => a.Genre).ToList();
+            IQueryable<Album> items =  _db.Albums.Include(a => a.Artist).Include(a => a.Genre);
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                items = items.Where(a => a.Title.Contains(searchString)).OrderBy(a => a.Title);
+            }
+            return View(items.ToList());
         }
+
+        
 
         public IActionResult Privacy()
         {

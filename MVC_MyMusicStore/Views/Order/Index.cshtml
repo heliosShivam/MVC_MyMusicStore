@@ -1,0 +1,62 @@
+﻿@model IEnumerable<MVC_MyMusicStore.Models.CartModels.OrderDetail>;
+
+<h2 class="text-light">All Orders</h2>
+
+<table class="table table-hover" style="background:white;">
+    <thead>
+        <th>OrderId</th>
+        <th>Username</th>
+        <th>First Name</th>
+        <th>AlbumId</th>
+        <th>Address</th>
+        
+        <th>Total</th>
+        <th>Order Status</th>
+    </thead>
+    <tbody>
+        @if(Model != null)
+        {
+            @foreach (var i in Model)
+            {
+                <tr>
+                    <td>@i.OrderId</td>
+                    <td>@i.Order.Username</td>
+                    <td>@i.Order.FirstName</td>
+                    <td>@i.AlbumId</td>
+                    <td>@i.Order.Address</td>
+                    <td>@i.Order.Total</td>
+                    <td>@i.Order.Status</td>
+                    <td>
+                        
+                        @if (i.Order.Status == "Pending")
+                        {
+                            <button class="btn btn-primary" onclick="acceptOrder('@i.OrderId')">Accept</button>
+                            <button class="btn btn-danger" onclick="rejectOrder('@i.OrderId')">Reject</button>
+                        }
+                    </td>
+
+                </tr>
+            }
+        }
+    </tbody>
+
+</table>
+@section Scripts {
+    <script>
+        function acceptOrder(orderId) {
+            
+            $.post("/Order/AcceptOrder", { orderId: orderId }, function (data) {
+                
+                location.reload(); // Refresh the page
+            });
+        }
+
+        function rejectOrder(orderId) {
+            
+            $.post("/Order/RejectOrder", { orderId: orderId }, function (data) {
+                
+                location.reload(); // Refresh the page
+            });
+        }
+    </script>
+    }

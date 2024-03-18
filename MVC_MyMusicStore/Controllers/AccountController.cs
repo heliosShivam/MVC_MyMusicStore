@@ -136,6 +136,7 @@ namespace MVC_MyMusicStore.Controllers
 
         public async Task<IActionResult> Logout()
         {
+            HttpContext.Session.Remove("LastVisitedPage");
             await _sm.SignOutAsync();
             return RedirectToAction("Index", "Home");
         }

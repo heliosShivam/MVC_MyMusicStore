@@ -39,7 +39,7 @@ namespace MVC_MyMusicStore.Controllers
             {
                 order.Username = User.Identity.Name;
                 order.OrderDate = DateTime.Now;
-
+                order.Status = "Pending";
                 _db.Orders.Add(order);
                 _db.SaveChanges();
 

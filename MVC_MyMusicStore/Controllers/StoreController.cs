@@ -24,12 +24,23 @@ namespace MVC_MyMusicStore.Controllers
         }
         public IActionResult Browse(string genre)
         {
-            
+            var fullUrl = HttpContext.Request.Path + HttpContext.Request.QueryString;
+            HttpContext.Session.SetString("LastVisitedPage", fullUrl);
+
             var genreModel = _db.Genres.Include("Albums")
-            .Single(g => g.Name == genre);
-           
+            .FirstOrDefault(g => g.Name == genre);
+
+            if (genreModel == null)
+            {
+                return RedirectToAction("BrowseNotFound");
+            }
             return View(genreModel);
             
+        }
+
+        public IActionResult BrowseNotFound()
+        {
+            return View();
         }
 
         public IActionResult Details(int id)

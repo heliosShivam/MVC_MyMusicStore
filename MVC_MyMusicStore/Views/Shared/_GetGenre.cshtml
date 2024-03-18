@@ -2,12 +2,12 @@
 
 
     
-<ul class="col mt-3 list-group list-group-flush">
-    <li class="list-group-item list-group-item-action active"><h3>Genres</h3></li>
+<ul class="col list-group list-group-flush" style="border-radius:10px; ">
+    <li class="list-group-item list-group-item-action " style="background-color:whitesmoke"><h3>Genres</h3></li>
     @foreach (var g in Model)
     {
-        <li class="list-group-item list-group-item-action">
-        <a href="@Url.Action("Browse", "Store", new { Genre = g.Name })" style="text-decoration:none; color:black">
+        <li class="list-group-item list-group-item-action" style="background:#4047d5; ">
+            <a href="@Url.Action("Browse", "Store", new { Genre = g.Name })" style="text-decoration:none;color:white">
             @g.Name
         </a>
         </li>

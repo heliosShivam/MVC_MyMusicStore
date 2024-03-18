@@ -111,8 +111,8 @@ namespace MVC_MyMusicStore.Models
             decimal? total = (from cartItems in _db.Carts
                               where cartItems.CartId == _shoppingCartId
                               select (int?)cartItems.Count * cartItems.Album.Price).Sum();
-
-            return total ?? decimal.Zero;
+            var roundedtotal = Math.Round(total.Value, 2);
+            return roundedtotal;
         }
 
         public int CreateOrder(Order order)
@@ -131,10 +131,12 @@ namespace MVC_MyMusicStore.Models
                 };
 
                 orderTotal += (item.Count * item.Album.Price);
+
                 _db.OrderDetail.Add(orderDetail);
             }
 
             order.Total = orderTotal;
+            
             _db.SaveChanges();
             EmptyCart();
 

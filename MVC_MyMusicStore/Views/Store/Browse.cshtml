@@ -3,23 +3,31 @@
 @{
     ViewBag.Title = "Browse";
 }
-<h2>Browsing Genre: @Model.Name</h2>
-<div class="genre">
+@* <h2>Browsing Genre: @Model.Name</h2> *@
+@if(Model == null)
+{
+    <h2>Not Found</h2>
+}
+else
+{
+    <h2 style="color:white">Browsing Genre: @Model.Name</h2>
+}
+<div class="genre text-light">
     @* <h3><em>@Model.Name</em> Albums</h3> *@
 
     <ul id="album-list">
         <div class="row">
         @foreach (var i in Model.Albums)
         {
-           
-            <div class="card m-3 p-0" style="display:flex; flex-direction:column; width: 18rem; height:20em">
+
+                <div class="card m-3 p-0" style="display:flex; flex-direction:column; width: 18rem; height:20em; background-color:#4047d5">
                 
                         <img src="@i.AlbumImgUrl" class="img-fluid card-img-top" alt="..." style="height:70%">
                 
                 
                 @* <div style="height : 16vh ; background-color: bisque " class="m-0"></div> *@
                 <div class="card-body">
-                    <a asp-action="Details" asp-controller="Store" asp-route-id="@i.AlbumId"><h5 class="card-title"> @i.Title</h5></a>
+                    <a asp-action="Details" asp-controller="Store" asp-route-id="@i.AlbumId"><h5 class="card-title text-light"> @i.Title</h5></a>
 
                     <p class="card-text">Price : $@i.Price</p>
                     @* <p class="btn btn-primary">

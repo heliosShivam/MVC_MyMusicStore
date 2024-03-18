@@ -18,9 +18,11 @@ namespace MVC_MyMusicStore.Models
 
         public Genre? Genre { get; set; }
         public Artist? Artist { get; set; }
-            
-        
 
-        
+        public List<OrderDetail>? OrderDetails { get; set; }
+
+
+
+
     }
 }

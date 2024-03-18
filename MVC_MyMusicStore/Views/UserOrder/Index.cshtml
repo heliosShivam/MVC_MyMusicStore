@@ -1,0 +1,32 @@
+﻿@model IEnumerable<MVC_MyMusicStore.Models.CartModels.OrderDetail>
+
+<table class="table table-hover" style="background:white">
+    <thead>
+    <th>Name</th>
+    <th>Album</th>
+    <th>Price</th>
+    <th>Order Date</th>
+    <th>Address</th>
+    <th>Status</th>
+    </thead>
+    <tbody>
+        @if(Model != null)
+        {
+            @foreach (var i in Model)
+            {
+                <tr>
+                    <td>@i.Order.FirstName @i.Order.LastName</td>
+                    <td>@i.Album.Title</td>
+                    <td>@i.Album.Price</td>
+                    <td>@i.Order.OrderDate</td>
+                    <td>@i.Order.Address</td>
+                    <td>@i.Order.Status</td>
+                    
+                </tr>
+                
+            }
+        }
+
+    </tbody>
+    
+</table>
