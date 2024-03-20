@@ -2,10 +2,10 @@
 
 namespace MVC_MyMusicStore.Models.UserModels
 {
-    public class ResetPasswordViewModel
+    public class ResetPassword
     {
-        [Required(ErrorMessage = "Email address is required.")]
-        [EmailAddress(ErrorMessage = "Invalid email address.")]
+        /*[Required(ErrorMessage = "Email address is required.")]*/
+        /*[EmailAddress(ErrorMessage = "Invalid email address.")]*/
         public string Email { get; set; }
 
         [Required(ErrorMessage = "New password is required.")]

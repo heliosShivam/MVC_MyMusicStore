@@ -7,7 +7,7 @@
     <th>Price</th>
     <th>Order Date</th>
     <th>Address</th>
-    <th>Status</th>
+    <th class="bg-warning">Status</th>
     </thead>
     <tbody>
         @if(Model != null)
@@ -20,7 +20,7 @@
                     <td>@i.Album.Price</td>
                     <td>@i.Order.OrderDate</td>
                     <td>@i.Order.Address</td>
-                    <td>@i.Order.Status</td>
+                    <td class="bg-warning">@i.Order.Status</td>
                     
                 </tr>
                 

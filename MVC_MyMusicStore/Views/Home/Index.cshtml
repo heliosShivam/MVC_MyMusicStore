@@ -10,6 +10,7 @@
 </div>
 <hr class="hr" style="color:white" />
 
+
 <div class="container" style="display:flex ; justify-content:center">
     
     
@@ -31,24 +32,34 @@
     <div class="vr" style="height: 30em;"></div>
     
     <div class="row ms-3" style="display:flex; justify-content:flex-start">
-        <div class="container">
-            <form asp-controller="Home" asp-action="Index" method="get" class="mb-3" style="width:82%">
+        <div class="container" style="display:flex" >
+            <form asp-controller="Home" asp-action="Index" method="get" class="mb-3" style="width:74%">
                 <div class="input-group">
                     <input type="text" class="form-control" placeholder="Search albums" name="searchString">
                     <button type="submit" class="btn btn-primary">Search</button>
                 </div>
             </form>
+            <div class="btn-group ms-3" >
+                <button class="btn btn-warning dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="height:38px">
+                    Sort
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" asp-action="Index" asp-route-sortOrder="@ViewData["TitleSortParam"]">Title</a></li>
+                    <li><a class="dropdown-item" asp-action="Index" asp-route-sortOrder="Price_Low">Price Low</a></li>
+                    <li><a class="dropdown-item" asp-action="Index" asp-route-sortOrder="Price_High">Price High</a></li>
+                </ul>
+            </div>
         </div>
         @foreach(var i in Model)
         {
             <div class="card m-3 p-0" style="width: 18rem; height:25em; background:#4047d5; color:white; border-radius:20PX">
-                <img src="@i.AlbumImgUrl" class="card-img-top" style="height:65%;border-radius:20px 20px 0 0; "  alt="@i.Title">
+                <img src="@i.AlbumImgUrl" class="card-img-top" style="height:15rem;border-radius:20px 20px 0 0; "  alt="@i.Title">
                 @* <div style="height : 16vh ; background-color: bisque " class="m-0"></div> *@
                 <div class="card-body">
                     <a asp-action="Details" asp-controller="Store" asp-route-id="@i.AlbumId" style="color:white ; text-decoration:none"><h5 class="card-title"> @i.Title</h5></a>
 
                     <p class="card-text">Price : $@i.Price</p>
-                    <p class="btn btn-light" >
+                    <p class="btn btn-light">
                         <a asp-controller="ShoppingCart" asp-action="AddToCart" asp-route-id="@i.AlbumId" style="color:black ; text-decoration:none">Add to cart</a>
                     </p>
 

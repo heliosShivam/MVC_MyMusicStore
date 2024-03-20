@@ -4,9 +4,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using MVC_MyMusicStore.Models;
 using MVC_MyMusicStore.Models.CartModels;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MVC_MyMusicStore.Controllers
 {
+    [Authorize]
     public class UserOrderController : Controller
     {
         private readonly AppDbContext _db;

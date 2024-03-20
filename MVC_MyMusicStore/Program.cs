@@ -23,6 +23,15 @@ internal class Program
 
         builder.Services.AddIdentity<AppUser, IdentityRole>().AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
 
+        builder.Services.Configure<IdentityOptions>(options =>
+        {
+            // Disable lockout feature entirely
+            options.Lockout.AllowedForNewUsers = false;
+            options.Lockout.DefaultLockoutTimeSpan = TimeSpan.Zero; // Lockout duration
+            options.Lockout.MaxFailedAccessAttempts = 0; // Number of failed attempts before lockout
+        });
+
+
         builder.Services.AddSession(options =>
         {
             options.Cookie.Name = "YourApp.Session";

@@ -63,13 +63,20 @@
                             
                         </li> *@
 
+
+                        <!-- Content to display only for authenticated users -->
                         @if (SignInManager.IsSignedIn(User))
                         {
                             <div>
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-controller="ShoppingCart" asp-action="Index">Cart</a>
                                    
-                            </li> <!-- Content to display only for authenticated users -->                               
+                            </li>                                
+                            </div>
+                            <div>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-controller="UserOrder" asp-action="Index">MyOrders</a>                                   
+                            </li>                              
                             </div>
                         }
                          
