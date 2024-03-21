@@ -41,6 +41,7 @@ namespace MVC_MyMusicStore.Controllers
                     return Redirect(lastVisitedPage);
                 }
                 else if(result.Succeeded && lastVisitedPage == null)
+
                 {
                     return RedirectToAction("Index", "Home");
                 }

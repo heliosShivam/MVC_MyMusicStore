@@ -52,11 +52,11 @@
         </div>
         @foreach(var i in Model)
         {
-            <div class="card m-3 p-0" style="width: 18rem; height:25em; background:#4047d5; color:white; border-radius:20PX">
-                <img src="@i.AlbumImgUrl" class="card-img-top" style="height:15rem;border-radius:20px 20px 0 0; "  alt="@i.Title">
+            <div class="card m-3 p-0" style="width: 18rem; height:25em; background:#4047d5; color:white; border-radius:5px">
+                <img src="@i.AlbumImgUrl" class="card-img-top" style="height:15rem;border-radius:5px 5px 0 0; "  alt="@i.Title">
                 @* <div style="height : 16vh ; background-color: bisque " class="m-0"></div> *@
                 <div class="card-body">
-                    <a asp-action="Details" asp-controller="Store" asp-route-id="@i.AlbumId" style="color:white ; text-decoration:none"><h5 class="card-title"> @i.Title</h5></a>
+                    <a asp-action="Details" asp-controller="Store" asp-route-id="@i.AlbumId" style="color:white ; text-dlecoration:none"><h5 class="card-title"> @i.Title</h5></a>
 
                     <p class="card-text">Price : $@i.Price</p>
                     <p class="btn btn-light">

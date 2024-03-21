@@ -24,7 +24,7 @@ namespace MVC_MyMusicStore.Controllers
             var user = await _userManager.GetUserAsync(User);
             IQueryable<OrderDetail> orders = _db.OrderDetail.Include(o => o.Order).Include(o => o.Album)
                                                .Where(o => o.Order.Username == user.UserName);
-                                               
+                                              
             return View(await orders.OrderByDescending(o => o.Order.OrderDate).ToListAsync());
             
         }
