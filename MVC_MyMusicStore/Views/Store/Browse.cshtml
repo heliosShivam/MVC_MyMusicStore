@@ -10,7 +10,11 @@
 }
 else
 {
-    <h2 style="color:white">Browsing Genre: @Model.Name</h2>
+    @* <input type="button" onclick="history.go(-1)" value="Return to client detail" /> *@
+   <div style="display:flex; align-items:center; padding:1%">
+        <button onclick="history.go(-1)" class="btn btn-link"><i class="fa-solid fa-angles-left" style="color:white; font-size:1.5rem"></i></button>
+        <h2 style="color:white; margin:0">Browsing Genre: @Model.Name</h2>
+   </div>
 }
 <div class="genre text-light">
     @* <h3><em>@Model.Name</em> Albums</h3> *@

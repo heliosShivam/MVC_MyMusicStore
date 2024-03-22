@@ -46,6 +46,11 @@ internal class Program
             options.AddPolicy("Admin", policy =>
                 policy.RequireUserName("admin@admin.com"));
         });
+        builder.Services.Configure<DataProtectionTokenProviderOptions>(options =>
+        {
+            options.TokenLifespan = TimeSpan.FromMinutes(5);
+        });
+
 
         var app = builder.Build();
 

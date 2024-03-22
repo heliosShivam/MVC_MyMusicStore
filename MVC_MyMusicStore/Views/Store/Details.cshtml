@@ -4,7 +4,10 @@
 }
 
 <div class="container text-light">
-    <h2>Album : @Model.Title</h2>
+    <div style="display:flex; padding:1%">
+        <button onclick="history.go(-1)" class="btn btn-link"><i class="fa-solid fa-angles-left" style="color:white; font-size:1.5rem"></i></button>
+        <h2>Album : @Model.Title</h2>
+    </div>
 
     <div class="card m-3 p-0" style="width: 70vw; height:auto; background-color:#4047d5; border-radius:5px">
             <div class="row g-0" style="height:50vh">

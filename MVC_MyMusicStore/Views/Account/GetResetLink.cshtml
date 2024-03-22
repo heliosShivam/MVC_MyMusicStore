@@ -5,7 +5,8 @@
 <div class="row flex justify-content-center">
 <div class="col-6">
 <div class="card" style="color:white; background-color:#4047d5">
-    <h4 class="card-header">Login</h4>
+            <button onclick="history.go(-1)" class="btn btn-link"><i class="fa-solid fa-angles-left" style="color:white; font-size:1.5rem"></i></button>
+    <h4 class="card-header">Get Reset Link</h4>
 
     <div class="card-body">
             <form asp-controller="Account" asp-action="GetResetLink" method="post">                                  

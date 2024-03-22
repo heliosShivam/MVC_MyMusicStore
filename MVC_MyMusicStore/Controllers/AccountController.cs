@@ -37,11 +37,9 @@ namespace MVC_MyMusicStore.Controllers
 
                     HttpContext.Session.Remove("LastVisitedPage");
                     Console.WriteLine("Visited after login" + lastVisitedPage);
-
                     return Redirect(lastVisitedPage);
                 }
                 else if(result.Succeeded && lastVisitedPage == null)
-
                 {
                     return RedirectToAction("Index", "Home");
                 }
@@ -57,8 +55,8 @@ namespace MVC_MyMusicStore.Controllers
 
         [HttpGet]
         public IActionResult Register()
-        {
-            return View();
+        {return View();
+            
         }
 
         [HttpPost]
@@ -114,9 +112,9 @@ namespace MVC_MyMusicStore.Controllers
                 if (user != null)
                 {
                     var resetToken = await _um.GeneratePasswordResetTokenAsync(user);
-
+                   
+                    return RedirectToAction("ResetPasswordLink", new {email, resetToken});
                     
-                    return RedirectToAction("ResetPasswordLink", new {email, resetToken}); ;
                 }
                 else
                 {
@@ -141,7 +139,8 @@ namespace MVC_MyMusicStore.Controllers
             //var resetLink = Url.Action("ResetPassword", "Account", new { email, resetToken }, Request.Scheme);
             //ViewData["ResetLink"] = resetLink;
             //return View();
-
+            Console.Write("Clk");
+            Console.WriteLine("ResetToken : " + resetToken);
             ViewBag.Email = email;
             ViewBag.ResetToken = resetToken;
 
@@ -173,8 +172,10 @@ namespace MVC_MyMusicStore.Controllers
                     if (result.Succeeded)
                     {
                         Console.WriteLine("Successssssssssssssss");
+                        //_um.UpdateSecurityStampAsync(user);
                         // Password reset successful
                         return RedirectToAction("SuccessfullReset");
+
                     }
                     else
                     {
