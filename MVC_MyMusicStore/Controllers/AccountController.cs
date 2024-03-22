@@ -21,6 +21,10 @@ namespace MVC_MyMusicStore.Controllers
         [HttpGet]
         public IActionResult Login()
         {
+            if (_sm.IsSignedIn(User))
+            {
+                return (RedirectToAction("Index", "Home"));
+            }
             return View();
         }
 
@@ -55,8 +59,12 @@ namespace MVC_MyMusicStore.Controllers
 
         [HttpGet]
         public IActionResult Register()
-        {return View();
-            
+        {
+            if (_sm.IsSignedIn(User))
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            return View();
         }
 
         [HttpPost]
@@ -85,18 +93,18 @@ namespace MVC_MyMusicStore.Controllers
                     ModelState.AddModelError("", e.Description);
                 }
             }
-
-
             return View(Nuser);
         }
 
-
-        /*start of reset password by generating a reset link*/
-
+        //start of reset password by generating a reset link
 
         [HttpGet]
         public IActionResult GetResetLink()
         {
+            if (_sm.IsSignedIn(User))
+            {
+                return (RedirectToAction("Index", "Home"));
+            }
             return View();
         }
 
@@ -121,7 +129,6 @@ namespace MVC_MyMusicStore.Controllers
                     ModelState.AddModelError("", "Please enter correct email");
                     return View();
                 }
-                
             }
             else
             {
@@ -143,6 +150,10 @@ namespace MVC_MyMusicStore.Controllers
             Console.WriteLine("ResetToken : " + resetToken);
             ViewBag.Email = email;
             ViewBag.ResetToken = resetToken;
+            if (_sm.IsSignedIn(User))
+            {
+                return (RedirectToAction("Index", "Home"));
+            }
 
             return View();
         }
@@ -154,6 +165,10 @@ namespace MVC_MyMusicStore.Controllers
         {
             ViewBag.ResetToken = resetToken; ViewBag.Email = email;
             Console.WriteLine("reset token : " + resetToken);
+            if (_sm.IsSignedIn(User))
+            {
+                return (RedirectToAction("Index", "Home"));
+            }
             return View();
         }
 
@@ -172,7 +187,7 @@ namespace MVC_MyMusicStore.Controllers
                     if (result.Succeeded)
                     {
                         Console.WriteLine("Successssssssssssssss");
-                        //_um.UpdateSecurityStampAsync(user);
+                        
                         // Password reset successful
                         return RedirectToAction("SuccessfullReset");
 
@@ -209,48 +224,13 @@ namespace MVC_MyMusicStore.Controllers
         }
 
 
-
-        /*[HttpPost]
-        public async Task<IActionResult> ResetPassword(ResetPasswordViewModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                var user = await _um.FindByEmailAsync(model.Email);
-
-                if (user != null)
-                {
-                    var resetToken = await _um.GeneratePasswordResetTokenAsync(user);
-                    Console.WriteLine("Reset Token : " + resetToken);
-                    var result = await _um.ResetPasswordAsync(user, resetToken, model.NewPassword);
-
-                    if (result.Succeeded)
-                    {
-                        // Password reset successful
-                        return RedirectToAction("Login");
-                    }
-                    else
-                    {
-                        // Password reset failed
-                        foreach (var error in result.Errors)
-                        {
-                            ModelState.AddModelError(string.Empty, error.Description);
-                        }
-                    }
-                }
-                else
-                {
-                    // User not found
-                    ModelState.AddModelError(string.Empty, "User not found.");
-                }
-            }
-
-
-            return View(model);
-        }*/
-
         //on successfull reset redirect here
         public IActionResult SuccessfullReset()
         {
+            if (_sm.IsSignedIn(User))
+            {
+                return (RedirectToAction("Index", "Home"));
+            }
             return View();
         }
 

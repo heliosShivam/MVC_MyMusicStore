@@ -61,17 +61,5 @@ namespace MVC_MyMusicStore.Controllers
 
             return View(album);
         }
-
-        
-        // GET: /Store/GenreMenu
-
-        /*public IActionResult GenreMenu()
-        {
-            var genres = _db.Genres.ToList();
-
-            return PartialView(genres);
-
-
-        }*/
     }
 }

@@ -1,6 +1,8 @@
 ﻿@model IEnumerable<MVC_MyMusicStore.Models.CartModels.OrderDetail>;
-<button onclick="history.go(-1)" class="btn btn-link"><i class="fa-solid fa-angles-left" style="color:white; font-size:1.5rem"></i></button>
-<h2 class="text-light">All Orders</h2>
+<div style="display:flex;color:white" class="mb-3">
+    <a onclick="history.go(-1)" class="btn btn-link"><i class="fa-solid fa-angles-left" style="color:white; font-size:1.5rem"></i></a>
+    <h2>All Orders</h2>
+</div>
 
 <table class="table table-hover" style="background:white;">
     <thead>
@@ -9,7 +11,6 @@
         <th>First Name</th>
         <th>AlbumId</th>
         <th>Address</th>
-        
         <th>Total</th>
         <th>Order Status</th>
     </thead>
@@ -27,14 +28,12 @@
                     <td>@i.Order.Total</td>
                     <td>@i.Order.Status</td>
                     <td>
-                        
                         @if (i.Order.Status == "Pending")
                         {
                             <button class="btn btn-primary" onclick="acceptOrder('@i.OrderId')">Accept</button>
                             <button class="btn btn-danger" onclick="rejectOrder('@i.OrderId')">Reject</button>
                         }
                     </td>
-
                 </tr>
             }
         }

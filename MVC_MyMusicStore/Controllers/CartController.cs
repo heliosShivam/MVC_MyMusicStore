@@ -32,7 +32,6 @@ namespace MVC_MyMusicStore.Controllers
                 CartTotal = cart.GetTotal(),
                 
             };
-            /*ViewBag.AlbumId = new SelectList(_storeDB.Albums, "AlbumId", "Title");*/
             // Return the view
             return View(viewModel);
         }

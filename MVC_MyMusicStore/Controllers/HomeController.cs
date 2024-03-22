@@ -47,7 +47,6 @@ namespace MVC_MyMusicStore.Controllers
             var genres = _db.Genres.ToList();
             ViewData["Genres"] = genres;
             
-            //var items = _db.Albums.Include(a => a.Genre).ToList();
             IQueryable<Album> albums =  _db.Albums.Include(a => a.Artist).Include(a => a.Genre);
             if (!string.IsNullOrEmpty(searchString))
             {
@@ -70,6 +69,7 @@ namespace MVC_MyMusicStore.Controllers
                     albums = albums.OrderBy(a => a.Title);
                     break;
             }
+
             //store cookie
             
             Response.Cookies.Append("SortOrder", sortOrder, new CookieOptions
@@ -92,11 +92,5 @@ namespace MVC_MyMusicStore.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-       /* public IActionResult GetGenre()
-        {
-           
-            return View("_GetGenre", genres);
-
-        }*/
     }
 }
