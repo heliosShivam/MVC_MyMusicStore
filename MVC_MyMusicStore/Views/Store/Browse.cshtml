@@ -16,32 +16,14 @@ else
         <h2 style="color:white; margin:0">Browsing Genre: @Model.Name</h2>
    </div>
 }
-<div class="genre text-light">
-    @* <h3><em>@Model.Name</em> Albums</h3> *@
+ <div class="genre text-light">
+    
 
     <ul id="album-list">
         <div class="row">
-        @foreach (var i in Model.Albums)
-        {
-
-                <div class="card m-3 p-0" style="display:flex; flex-direction:column; width: 18rem; height:20em; background-color:#4047d5">
-                
-                        <img src="@i.AlbumImgUrl" class="img-fluid card-img-top" alt="..." style="height:70%">
-                
-                
-                @* <div style="height : 16vh ; background-color: bisque " class="m-0"></div> *@
-                <div class="card-body">
-                    <a asp-action="Details" asp-controller="Store" asp-route-id="@i.AlbumId"><h5 class="card-title text-light"> @i.Title</h5></a>
-
-                    <p class="card-text">Price : $@i.Price</p>
-                    @* <p class="btn btn-primary">
-                        <a asp-controller="ShoppingCart" asp-action="AddToCart" asp-route-id="@i.AlbumId" style="color:white ; text-decoration:none">Add to cart</a>
-                    </p> *@
-
-                </div>
-            </div>
-            
-        }
+            @{
+                await Html.RenderPartialAsync("~/Views/Shared/_Album.cshtml", Model.Albums);
+            }
         </div>
     </ul>
-</div>
+</div> 
